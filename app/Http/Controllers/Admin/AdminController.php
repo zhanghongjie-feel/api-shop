@@ -14,7 +14,18 @@ class AdminController extends Controller
     {
         //二维码识别后访问的地址
         $id=time().rand(1000,9999);
-        $redirect_url="http://";
+        $redirect_url="http://api.distantplace.vip/admin/wechat/login_do?id=".$id;
+        //生成一个二维码
+        return view('Admin.wechat_login',[
+            'redirect_url'=>$redirect_url,
+            'id'=>$id
+        ]);
+    }
+    public function wechat_login_do()
+    {
+        //接受二维码
+        $id=request('id');
+        //通过网页授权获取openid
     }
     public function category_blur(Request $request)
     {

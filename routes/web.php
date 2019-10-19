@@ -41,7 +41,7 @@ Route::any('admin/product/add','Admin\GoodsController@product_add');
 
 Route::prefix('admin')->group(function(){
     Route::any('wechat/login','Admin\AdminController@wechat_login');
-
+    Route::any('wechat/login_do','Admin\AdminController@wechat_login_do');
   Route::any('product/add_do','Admin\GoodsController@product_add_do');
   Route::any('goods/show','Admin\GoodsController@goods_show');
 });
