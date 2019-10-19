@@ -1,0 +1,85 @@
+[
+'颜色'=>[
+[2]=>
+array(8) {
+["goods_attr_id"]=>
+int(48)
+["goods_id"]=>
+int(52)
+["attr_id"]=>
+int(4)
+["attr_value"]=>
+string(6) "黄色"
+["attr_price"]=>
+string(1) "0"
+["attr_name"]=>
+string(6) "颜色"
+["type_id"]=>
+int(2)
+["attr_type"]=>
+int(2)
+}
+[3]=>
+array(8) {
+["goods_attr_id"]=>
+int(49)
+["goods_id"]=>
+int(52)
+["attr_id"]=>
+int(4)
+["attr_value"]=>
+string(6) "绿色"
+["attr_price"]=>
+string(1) "0"
+["attr_name"]=>
+string(6) "颜色"
+["type_id"]=>
+int(2)
+["attr_type"]=>
+int(2)
+}
+],
+
+'内存'=>[
+[0]=>
+array(8) {
+["goods_attr_id"]=>
+int(46)
+["goods_id"]=>
+int(52)
+["attr_id"]=>
+int(3)
+["attr_value"]=>
+string(4) "128G"
+["attr_price"]=>
+string(4) "1000"
+["attr_name"]=>
+string(6) "内存"
+["type_id"]=>
+int(2)
+["attr_type"]=>
+int(2)
+}
+[1]=>
+array(8) {
+["goods_attr_id"]=>
+int(47)
+["goods_id"]=>
+int(52)
+["attr_id"]=>
+int(3)
+["attr_value"]=>
+string(3) "64G"
+["attr_price"]=>
+string(1) "0"
+["attr_name"]=>
+string(6) "内存"
+["type_id"]=>
+int(2)
+["attr_type"]=>
+int(2)
+}
+
+]
+
+]
