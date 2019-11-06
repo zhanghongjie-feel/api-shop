@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="37600aeb-11f0-4449-bfbd-9df15ab9ee40" name="api-shop" url="http://47.100.211.165">
-        <fileTransfer host="47.100.211.165" port="22" rootFolder="/root" accessType="SFTP">
+        <fileTransfer host="47.100.211.165" port="22" rootFolder="/data/wwwroot/default/api-shop" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>

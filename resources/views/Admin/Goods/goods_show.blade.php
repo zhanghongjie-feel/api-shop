@@ -26,8 +26,8 @@
         </tr>
         @foreach($goods as $k=>$v)
         <tbody>
-          <td>{{$v['goods_id']}}</td>
-          <td>{{$v['goods_name']}}</td>
+          <td>{{$v->goods_id}}</td>
+          <td>{{$v->goods_name}}</td>
           <td>{{$v['cate_name']}}</td>
           <td>{{$v['goods_price']}}</td>
           @if($v['is_up']==1)
@@ -38,4 +38,6 @@
         </tbody>
         @endforeach
     </table>
+    {{ $goods->links() }}
+
 @endsection

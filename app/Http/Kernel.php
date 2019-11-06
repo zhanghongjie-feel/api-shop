@@ -12,6 +12,7 @@ class Kernel extends HttpKernel
      * These middleware are run during every request to your application.
      *
      * @var array
+     * 全局中间件
      */
     protected $middleware = [
         \App\Http\Middleware\TrustProxies::class,
@@ -25,6 +26,7 @@ class Kernel extends HttpKernel
      * The application's route middleware groups.
      *
      * @var array
+     * 分组中间件
      */
     protected $middlewareGroups = [
         'web' => [
@@ -35,6 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
         ],
 
         'api' => [
@@ -49,6 +52,7 @@ class Kernel extends HttpKernel
      * These middleware may be assigned to groups or used individually.
      *
      * @var array
+     * 自定义中间件
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
@@ -61,6 +65,8 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'apiheader'=>\App\Http\Middleware\Apiheader::class,
+        'Token'=>\App\Http\Middleware\Token::class
     ];
 
     /**
@@ -69,6 +75,7 @@ class Kernel extends HttpKernel
      * This forces non-global middleware to always be in the given order.
      *
      * @var array
+     * give order 非全局中间件排序
      */
     protected $middlewarePriority = [
         \Illuminate\Session\Middleware\StartSession::class,

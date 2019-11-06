@@ -8,8 +8,11 @@ use App\model\Type;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\model\CategoryModel;
+use App\model\Openid;
+use Illuminate\Support\Facades\Cache;
 class AdminController extends Controller
 {
+    //_______________________________扫码登录 （注意绑定代码在wechat-laravel）________________________
     public function wechat_login()
     {
         //二维码识别后访问的地址
@@ -26,7 +29,23 @@ class AdminController extends Controller
         //接受二维码
         $id=request('id');
         //通过网页授权获取openid
+        $openid=Openid::getOpenid();
+        Cache::put('wechatLogin_'.$id,$openid,10);
+        return '扫码成功';
     }
+    public function checkWechatLogin()
+    {
+        //通过唯一标识，查看cache中是否有用户信息即可
+        $id=request('id');//二维码唯一标识
+        $openid=Cache::get('wechatLogin_'.$id);
+        if(!$openid){
+            //抛错
+            return json_encode(['ret'=>0,'msg'=>'用户未完成扫码']);
+        }
+        session(['openid'=>$openid]);
+        return json_encode(['ret'=>1,'msg'=>'用户已经扫码']);
+    }
+    //______________________________________________________________________________________________________________________
     public function category_blur(Request $request)
     {
         $cate_name=request('cate_name');
@@ -34,7 +53,7 @@ class AdminController extends Controller
         if($cate_info>0){
             return json_encode(['ret'=>0,'msg'=>'数据不可以用']);
         }else{
-
+            return json_encode(['ret'=>1,'msg'=>'数据可以用']);
         }
     }
     public function attr_add()

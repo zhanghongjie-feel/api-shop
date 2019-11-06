@@ -39,39 +39,106 @@
                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
                        });
                    });
-               $('[name="cate_name"]').blur(function(){
-                    var cate_name=$('[name="cate_name"]').val();
-                    $.ajax({
-                        url:"{{url('admin/cate/blur')}}",
-                        type:"GET",
-                        data:{cate_name:cate_name},
-                        dataType:"json",
-                        success:function(res){
-//                            alert(res.msg);
-                            if(res.ret==0){
-                                $('[name="cate_name"]').val('');
-                                $('.btn').attr('disabled',true);
-                            }
-                        }
-                    });
-                    $('.btn').on('click',function(){
+
+                    //校验名字是否重复
+                    $('[name="cate_name"]').blur(function(){
                         var cate_name=$('[name="cate_name"]').val();
-                        var pid=$('[name="pid"]').val();
-//                        alert(cate_name);
+                        // alert(cate_name);return;
                         $.ajax({
-                            url:"{{url('admin/cate/add_do')}}",
-                            type:"post",
-                            data:{cate_name:cate_name,pid:pid},
+                            url:"{{url('admin/cate/blur')}}",
+                            type:"GET",
+                            data:{cate_name:cate_name},
                             dataType:"json",
-                            success:function (res) {
-                                alert(res.msg);
-                                if(res.ret==1){
-                                    location.href="{{'admin/cate/index'}}"
+                            success:function(res){
+                            //    alert(res.msg);
+                                    console.log(res);
+                                if(res.ret==0){
+                                    flag = false;
+                                    alert('数据重复');return false;
+                                    //$('[name="cate_name"]').val('');
+                                   
+                                }else{
+                                 
                                 }
+                                // alert(flag);return;
                             }
                         });
-                        return false;
-                    })
-               })
+                            
+                    });
+                           
+               $('.btn').on('click',function(){
+                var cate_name=$('[name="cate_name"]').val();
+                        // alert(cate_name);return;
+                        $.ajax({
+                            url:"{{url('admin/cate/blur')}}",
+                            type:"GET",
+                            data:{cate_name:cate_name},
+                            dataType:"json",
+                            success:function(res){
+                            //    alert(res.msg);
+                                    console.log(res);
+                                if(res.ret==0){
+                                 
+                                    // alert('数据重复');return false;
+                                    //$('[name="cate_name"]').val('');
+                                    return false;
+                                }else{
+                                  
+                                            // alert("走添加了");
+                                    var cate_name=$('[name="cate_name"]').val();
+                                    var pid=$('[name="pid"]').val();
+                                    $.ajax({
+                                        url:"{{url('admin/cate/add_do')}}",
+                                        type:"post",
+                                        data:{cate_name:cate_name,pid:pid},
+                                        dataType:"json",
+                                        success:function (res) {
+                                            alert(res.msg);
+                                            if(res.ret==1){
+                                                location.href="{{'admin/cate/index'}}"
+                                            }
+                                        }
+                                    });
+                                    return false;   
+                                    //alert(flag);
+
+                                }
+                                // alert(flag);return;
+                            }
+                        });
+
+
+
+                         
+                   
+                       
+                    });
+                    //调用
+                    function checkName(){
+                        var cate_name=$('[name="cate_name"]').val();
+                        // alert(cate_name);return;
+                        $.ajax({
+                            url:"{{url('admin/cate/blur')}}",
+                            type:"GET",
+                            data:{cate_name:cate_name},
+                            dataType:"json",
+                            success:function(res){
+                            //    alert(res.msg);
+                                    console.log(res);
+                                if(res.ret==0){
+                                    flag = false;
+                                    alert('数据重复');return false;
+                                    //$('[name="cate_name"]').val('');
+                                    return false;
+                                }else{
+                                    flag = true;
+                                    
+                                    //alert(flag);
+
+                                }
+                                // alert(flag);return;
+                            }
+                        });
+                    }
            </script>
 @endsection

@@ -99,7 +99,7 @@ class GoodsController extends Controller
           ]);
         }
         if($res){
-          return redirect('admin/product/show');
+          return redirect('admin/goods/show');
         }
 
     }
@@ -107,23 +107,25 @@ class GoodsController extends Controller
     public function goods_show(Request $request)
     {
       $cate_name=CategoryModel::get('cate_name')->toArray();//搜索input框的cate所需数值
-      $goods=Goods::join('category','category.cate_id','=','goods.cate_id')->get()->toArray();//循环所需数据
+//       $goods=Goods::join('category','category.cate_id','=','goods.cate_id')->get()->toArray();//循环所需数据
       // dd($goods);
       $where=[];
 
       $search_goods=$request->input('search_goods');
       $search_cate=$request->input('search_cate');
+
         if(isset($search_goods)){
-          // $where[]=['goods_name',"like","%$search_goods%"];
-          // $goods=Goods::where($where)->join('category','category.cate_id','=','goods.cate_id')->get()->toArray();//循环所需数据
+            $where[]=['goods_name',"like","%$search_goods%"];
         }
         if(isset($search_cate)){
-            // $where[]=['cate_name'=>$search_cate];
-            // dd($where);
-            $goods=CategoryModel::where(['cate_id'=>6])->get();//循环所需数据
-            dd($goods);
+            $where[]=['cate_name','=',$search_cate];
         }
-        return view('Admin.Goods.goods_show',['goods'=>$goods,'cate_name'=>$cate_name,'search_goods'=>$search_goods]);
+//         dd($where);
+
+      $goods=Goods::join('category','category.cate_id','=','goods.cate_id')->where($where)->paginate(2);//循环所需数据
+//     dd($goods);
+
+        return view('Admin.Goods.goods_show',['goods'=>$goods,'search_goods'=>$search_goods,'cate_name'=>$cate_name]);
     }
 
 
